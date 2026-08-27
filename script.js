@@ -27,9 +27,41 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('visible'));
 }
 
-leadForm.addEventListener('submit', (event) => {
+leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  formStatus.textContent = "Thanks — the form design is ready. We'll connect real submissions next.";
+
+  const submitButton = leadForm.querySelector('button[type="submit"]');
+  const originalLabel = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending…';
+  formStatus.className = 'form-status';
+  formStatus.textContent = 'Sending your project…';
+
+  try {
+    const formData = new FormData(leadForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    const response = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) {
+      throw new Error(result.message || 'Unable to send your project.');
+    }
+
+    leadForm.reset();
+    formStatus.className = 'form-status success';
+    formStatus.textContent = result.message || 'Project received. We’ll get back to you soon.';
+  } catch (error) {
+    formStatus.className = 'form-status error';
+    formStatus.textContent = error.message || 'Something went wrong. Please email hello@siteremade.com.';
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalLabel;
+  }
 });
 
 year.textContent = new Date().getFullYear();
