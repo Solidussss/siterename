@@ -1,33 +1,35 @@
-const styleButtons = document.querySelectorAll(".style-option");
-const demoSite = document.getElementById("demoSite");
-const leadForm = document.getElementById("leadForm");
-const formStatus = document.getElementById("formStatus");
-const year = document.getElementById("year");
+const styleButtons = document.querySelectorAll('.style-option');
+const demos = document.querySelectorAll('[data-demo]');
+const leadForm = document.getElementById('leadForm');
+const formStatus = document.getElementById('formStatus');
+const year = document.getElementById('year');
 
 styleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    styleButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-
+  button.addEventListener('click', () => {
     const style = button.dataset.style;
-
-    demoSite.classList.remove("style-premium", "style-bold");
-
-    if (style === "premium") {
-      demoSite.classList.add("style-premium");
-    }
-
-    if (style === "bold") {
-      demoSite.classList.add("style-bold");
-    }
+    styleButtons.forEach((item) => item.classList.toggle('active', item === button));
+    demos.forEach((demo) => demo.classList.toggle('active', demo.dataset.demo === style));
   });
 });
 
-leadForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+const revealItems = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('visible'));
+}
 
-  formStatus.textContent =
-    "Form is ready visually. We'll connect the real submission system next.";
+leadForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  formStatus.textContent = "Thanks — the form design is ready. We'll connect real submissions next.";
 });
 
 year.textContent = new Date().getFullYear();
