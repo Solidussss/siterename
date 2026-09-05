@@ -22,14 +22,8 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.button,.mode-tab,.mode-stage,.mode-preview,.builder-site{transition:none}.floating-card{animation:none}}
 
 /* SiteRemade brand mark */
-.brand-logo{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;flex:0 0 auto}
-.brand-logo img{display:block;width:46px;height:46px;object-fit:contain}
-footer .footer-logo{width:52px;height:52px}
-footer .footer-logo img{width:42px;height:42px}
-@media(max-width:720px){.brand-logo{width:48px;height:48px}.brand-logo img{width:39px;height:39px}}
-
-/* SiteRemade brand mark */
-.brand-logo{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:48px;height:48px}
-.brand-logo img{display:block;width:100%;height:100%;object-fit:contain}
-.footer-logo{width:52px;height:52px}
-@media(max-width:700px){.brand-logo{width:42px;height:42px}.footer-logo{width:48px;height:48px}}
+.brand-logo{display:inline-flex;align-items:center;justify-content:center;width:82px;height:72px;flex:0 0 auto}
+.brand-logo img{display:block;width:76px;height:68px;object-fit:contain}
+footer .footer-logo{width:78px;height:68px}
+footer .footer-logo img{width:72px;height:64px}
+@media(max-width:720px){.brand-logo{width:68px;height:60px}.brand-logo img{width:62px;height:56px}}
