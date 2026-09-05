@@ -27,3 +27,112 @@
 footer .footer-logo{width:78px;height:68px}
 footer .footer-logo img{width:72px;height:64px}
 @media(max-width:720px){.brand-logo{width:68px;height:60px}.brand-logo img{width:62px;height:56px}}
+
+
+/* ===== Full-colour customizer ===== */
+.full-color-grid{display:grid;grid-template-columns:1fr;gap:9px}
+.mini-color-control{display:block;background:#fff;border:1px solid #dddfe4;border-radius:12px;padding:11px 12px}
+.mini-color-control>span{display:block;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#686c75;font-weight:800;margin-bottom:9px}
+.mini-color-control>div{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:10px}
+.mini-color-control input[type="color"]{width:54px;height:40px;padding:0;border:0;border-radius:9px;overflow:hidden;background:transparent;cursor:pointer}
+.mini-color-control output{font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#3f434a}
+.color-swatch-preview{margin-top:10px}
+.reset-colors{width:100%;margin-top:9px;min-height:38px;border:1px solid #d8dae0;background:#fff;border-radius:999px;font-size:10px;cursor:pointer}
+.reset-colors:hover{border-color:#111}
+
+/* The chosen colours now control the entire preview, not just accents. */
+.builder-site{
+  background:var(--site-bg)!important;
+  color:var(--site-text)!important;
+}
+.builder-site .site-nav{
+  background:var(--site-bg)!important;
+  color:var(--site-text)!important;
+  border-color:color-mix(in srgb,var(--site-text) 18%,transparent)!important;
+}
+.builder-site .site-nav strong,
+.builder-site .site-nav div,
+.builder-site .site-copy h3,
+.builder-site .site-sections strong{
+  color:var(--site-text)!important;
+}
+.builder-site .site-hero{
+  background:
+    radial-gradient(circle at 78% 24%,color-mix(in srgb,var(--site-accent) 26%,transparent),transparent 30%),
+    linear-gradient(145deg,var(--site-bg-light),var(--site-bg))!important;
+  color:var(--site-text)!important;
+}
+.builder-site .site-copy>p:first-child{color:color-mix(in srgb,var(--site-accent) 78%,var(--site-text))!important}
+.builder-site .site-copy>p:nth-of-type(2),
+.builder-site .site-actions span{color:var(--site-muted)!important}
+.builder-site .site-nav button,
+.builder-site .site-actions button{
+  background:var(--site-accent)!important;
+  color:var(--site-text)!important;
+}
+.builder-site .site-visual{
+  background:linear-gradient(145deg,color-mix(in srgb,var(--site-accent) 18%,var(--site-bg-light)),var(--site-bg-dark))!important;
+  border-color:color-mix(in srgb,var(--site-text) 16%,transparent)!important;
+}
+.builder-site .visual-mark{color:var(--site-accent)!important}
+.builder-site .visual-card{
+  background:color-mix(in srgb,var(--site-bg) 82%,transparent)!important;
+  color:var(--site-text)!important;
+  border-color:color-mix(in srgb,var(--site-text) 18%,transparent)!important;
+}
+.builder-site .visual-card small,
+.builder-site .site-sections small{color:var(--site-muted)!important}
+.builder-site .site-sections{
+  background:var(--site-bg)!important;
+  border-color:color-mix(in srgb,var(--site-text) 18%,transparent)!important;
+}
+.builder-site .site-sections>div{border-color:color-mix(in srgb,var(--site-text) 18%,transparent)!important}
+
+/* Keep each style's personality while letting the colours fully change. */
+.builder-site[data-mode="editorial"] .site-nav button,
+.builder-site[data-mode="editorial"] .site-actions button,
+.builder-site[data-mode="studio"] .site-nav button,
+.builder-site[data-mode="studio"] .site-actions button,
+.builder-site[data-mode="impact"] .site-nav button,
+.builder-site[data-mode="impact"] .site-actions button{color:var(--site-text)!important}
+
+.builder-site[data-mode="studio"] .site-visual,
+.builder-site[data-mode="impact"] .site-visual{
+  box-shadow:14px 14px 0 color-mix(in srgb,var(--site-text) 92%,transparent)!important;
+  border-color:var(--site-text)!important;
+}
+.builder-site[data-mode="studio"] .site-nav,
+.builder-site[data-mode="studio"] .site-sections,
+.builder-site[data-mode="impact"] .site-nav,
+.builder-site[data-mode="impact"] .site-sections{border-color:var(--site-text)!important}
+.builder-site[data-mode="studio"] .site-sections>div,
+.builder-site[data-mode="impact"] .site-sections>div{border-color:var(--site-text)!important}
+
+/* Fix crushed / overlapping headlines. */
+.builder-site .site-copy h3{
+  line-height:.96!important;
+  letter-spacing:-.045em!important;
+  text-wrap:balance;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.builder-site[data-mode="studio"] .site-copy h3{
+  font-size:clamp(46px,4.65vw,72px)!important;
+  line-height:.94!important;
+  letter-spacing:-.05em!important;
+}
+.builder-site[data-mode="impact"] .site-copy h3{
+  font-size:clamp(48px,5.15vw,82px)!important;
+  line-height:.88!important;
+  letter-spacing:-.055em!important;
+}
+.builder-site[data-layout="poster"] .site-copy h3{
+  font-size:clamp(62px,7vw,104px)!important;
+  line-height:.91!important;
+  letter-spacing:-.05em!important;
+}
+.builder-device.mobile .builder-site .site-copy h3{
+  font-size:46px!important;
+  line-height:.96!important;
+  letter-spacing:-.04em!important;
+}

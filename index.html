@@ -147,9 +147,23 @@
           </div>
 
           <div class="control-block color-block">
-            <div class="control-title-row"><label class="control-label" for="brandColor">Brand colour</label><output id="brandColorHex">#315CFF</output></div>
-            <div class="color-picker-row"><input id="brandColor" type="color" value="#315cff" /><div class="color-swatch-preview"><span></span><span></span><span></span><span></span></div></div>
-            <div class="tone-toggle" role="group" aria-label="Website background tone"><button class="active" type="button" data-tone="auto">Auto</button><button type="button" data-tone="light">Light</button><button type="button" data-tone="dark">Dark</button></div>
+            <label class="control-label">Website colours</label>
+            <div class="full-color-grid">
+              <label class="mini-color-control">
+                <span>Main colour</span>
+                <div><input id="brandColor" type="color" value="#315cff" /><output id="brandColorHex">#315CFF</output></div>
+              </label>
+              <label class="mini-color-control">
+                <span>Background</span>
+                <div><input id="backgroundColor" type="color" value="#0c1120" /><output id="backgroundColorHex">#0C1120</output></div>
+              </label>
+              <label class="mini-color-control">
+                <span>Text</span>
+                <div><input id="textColor" type="color" value="#ffffff" /><output id="textColorHex">#FFFFFF</output></div>
+              </label>
+            </div>
+            <div class="color-swatch-preview"><span></span><span></span><span></span><span></span></div>
+            <button type="button" class="reset-colors" id="resetColors">Reset style colours</button>
           </div>
 
           <div class="control-block">
@@ -210,6 +224,8 @@
         <div class="hp-field" aria-hidden="true"><label>Company website<input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" /></label></div>
         <input type="hidden" name="designMode" id="formDesignMode" />
         <input type="hidden" name="brandColor" id="formBrandColor" />
+        <input type="hidden" name="backgroundColor" id="formBackgroundColor" />
+        <input type="hidden" name="textColor" id="formTextColor" />
         <input type="hidden" name="layout" id="formLayout" />
         <input type="hidden" name="industry" id="formIndustry" />
         <input type="hidden" name="sections" id="formSections" />

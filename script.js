@@ -1,6 +1,15 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
+const modeDefaults = {
+  luminous:  { main:'#315cff', background:'#0c1120', text:'#ffffff' },
+  editorial: { main:'#8b6d4f', background:'#f5efe6', text:'#1d1915' },
+  precision: { main:'#315cff', background:'#fafafa', text:'#111111' },
+  studio:    { main:'#ff6b3d', background:'#f2e8db', text:'#111111' },
+  executive: { main:'#b59b6d', background:'#13231d', text:'#f0eadf' },
+  impact:    { main:'#e8ff43', background:'#ff5b37', text:'#111111' }
+};
+
 const modeData = {
   luminous: { number: '01', name: 'Luminous', tagline: 'Modern UI with controlled glow and depth.', brand: 'NORTHLINE', domain: 'yourbusiness.com', kicker: 'ELECTRICAL SERVICES', headline: 'Powering better spaces.' },
   editorial: { number: '02', name: 'Editorial', tagline: 'Publication-inspired structure with timeless typography.', brand: 'WESTRIDGE', domain: 'yourbusiness.com', kicker: 'LANDSCAPING SERVICES', headline: 'Outdoor spaces, considered.' },
@@ -36,6 +45,11 @@ const businessName = $('#businessName');
 const industrySelect = $('#industrySelect');
 const brandColor = $('#brandColor');
 const brandColorHex = $('#brandColorHex');
+const backgroundColor = $('#backgroundColor');
+const backgroundColorHex = $('#backgroundColorHex');
+const textColor = $('#textColor');
+const textColorHex = $('#textColorHex');
+const resetColors = $('#resetColors');
 const builderSite = $('#builderSite');
 const builderDevice = $('#builderDevice');
 const siteBusiness = $('#siteBusiness');
@@ -52,6 +66,8 @@ const handoffMeta = $('#handoffMeta');
 const formBusiness = $('#formBusiness');
 const formDesignMode = $('#formDesignMode');
 const formBrandColor = $('#formBrandColor');
+const formBackgroundColor = $('#formBackgroundColor');
+const formTextColor = $('#formTextColor');
 const formLayout = $('#formLayout');
 const formIndustry = $('#formIndustry');
 const formSections = $('#formSections');
@@ -60,7 +76,6 @@ const formStatus = $('#formStatus');
 const year = $('#year');
 let selectedMode = 'luminous';
 let selectedLayout = 'split';
-let selectedTone = 'auto';
 
 function titleCase(value='') { return value.replace(/\b\w/g, c => c.toUpperCase()); }
 function hexToRgb(hex) { const n = parseInt(hex.replace('#',''),16); return {r:(n>>16)&255,g:(n>>8)&255,b:n&255}; }
@@ -83,24 +98,45 @@ function setMode(mode, syncBuilder = true) {
   if (syncBuilder) {
     builderMode.value = mode;
     builderSite.dataset.mode = mode;
+    applyModeDefaults(mode);
     updateBuilder();
   }
 }
 modeTabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.mode)));
 builderMode.addEventListener('change', e => setMode(e.target.value, true));
 
-function updatePalette(hex) {
-  const dark = mix(hex, '#000000', .55);
-  const light = mix(hex, '#ffffff', .76);
-  const soft = mix(hex, '#ffffff', .91);
-  builderSite.style.setProperty('--site-accent', hex);
+function updatePalette(main, background, text) {
+  const dark = mix(main, '#000000', .55);
+  const light = mix(main, '#ffffff', .76);
+  const soft = mix(main, '#ffffff', .91);
+  const bgDark = mix(background, '#000000', .18);
+  const bgLight = mix(background, '#ffffff', .12);
+  const textMuted = mix(text, background, .38);
+
+  builderSite.style.setProperty('--site-accent', main);
   builderSite.style.setProperty('--site-accent-dark', dark);
   builderSite.style.setProperty('--site-accent-light', light);
-  document.documentElement.style.setProperty('--picker-primary', hex);
-  document.documentElement.style.setProperty('--picker-dark', dark);
-  document.documentElement.style.setProperty('--picker-light', light);
+  builderSite.style.setProperty('--site-bg', background);
+  builderSite.style.setProperty('--site-bg-dark', bgDark);
+  builderSite.style.setProperty('--site-bg-light', bgLight);
+  builderSite.style.setProperty('--site-text', text);
+  builderSite.style.setProperty('--site-muted', textMuted);
+
+  document.documentElement.style.setProperty('--picker-primary', main);
+  document.documentElement.style.setProperty('--picker-dark', background);
+  document.documentElement.style.setProperty('--picker-light', text);
   document.documentElement.style.setProperty('--picker-soft', soft);
-  brandColorHex.textContent = hex.toUpperCase();
+
+  brandColorHex.textContent = main.toUpperCase();
+  backgroundColorHex.textContent = background.toUpperCase();
+  textColorHex.textContent = text.toUpperCase();
+}
+
+function applyModeDefaults(mode) {
+  const palette = modeDefaults[mode];
+  brandColor.value = palette.main;
+  backgroundColor.value = palette.background;
+  textColor.value = palette.text;
 }
 
 function selectedSections(){ return $$('.section-toggles input:checked').map(input=>input.value); }
@@ -108,6 +144,8 @@ function updateBuilder() {
   const business = (businessName.value || 'Your Business').trim();
   const industry = industries[industrySelect.value] || industries.other;
   const color = brandColor.value;
+  const bgColor = backgroundColor.value;
+  const txtColor = textColor.value;
   const displayBusiness = business.toUpperCase();
   siteBusiness.textContent = displayBusiness;
   siteKicker.textContent = industry.kicker;
@@ -115,9 +153,7 @@ function updateBuilder() {
   siteSub.textContent = industry.sub;
   builderSite.dataset.mode = selectedMode;
   builderSite.dataset.layout = selectedLayout;
-  builderSite.classList.toggle('tone-light', selectedTone === 'light');
-  builderSite.classList.toggle('tone-dark', selectedTone === 'dark');
-  updatePalette(color);
+  updatePalette(color, bgColor, txtColor);
 
   const sections = selectedSections();
   const serviceLabels = industry.services;
@@ -129,26 +165,27 @@ function updateBuilder() {
   summaryLayout.textContent = ({split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1');
   summaryIndustry.textContent = industry.label;
   handoffTitle.textContent = `${business} — ${modeData[selectedMode].name}`;
-  handoffMeta.textContent = `${color.toUpperCase()} · ${{split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1'} · ${industry.label}`;
+  handoffMeta.textContent = `${color.toUpperCase()} main · ${bgColor.toUpperCase()} background · ${txtColor.toUpperCase()} text · ${{split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1'} · ${industry.label}`;
   formBusiness.value = business;
   formDesignMode.value = modeData[selectedMode].name;
   formBrandColor.value = color.toUpperCase();
+  formBackgroundColor.value = bgColor.toUpperCase();
+  formTextColor.value = txtColor.toUpperCase();
   formLayout.value = ({split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1');
   formIndustry.value = industry.label;
   formSections.value = sections.join(', ');
 }
 
-[businessName, industrySelect, brandColor].forEach(el => el.addEventListener('input', updateBuilder));
+[businessName, industrySelect, brandColor, backgroundColor, textColor].forEach(el => el.addEventListener('input', updateBuilder));
 $$('.layout-choice').forEach(button => button.addEventListener('click', () => {
   selectedLayout = button.dataset.layout;
   $$('.layout-choice').forEach(b => b.classList.toggle('active', b === button));
   updateBuilder();
 }));
-$$('.tone-toggle button').forEach(button => button.addEventListener('click', () => {
-  selectedTone = button.dataset.tone;
-  $$('.tone-toggle button').forEach(b => b.classList.toggle('active', b === button));
+resetColors.addEventListener('click', () => {
+  applyModeDefaults(selectedMode);
   updateBuilder();
-}));
+});
 $$('.section-toggles input').forEach(input => input.addEventListener('change', updateBuilder));
 $$('.device-toggle button').forEach(button => button.addEventListener('click', () => {
   $$('.device-toggle button').forEach(b => b.classList.toggle('active', b === button));
@@ -190,5 +227,6 @@ leadForm.addEventListener('submit', async event => {
 });
 
 setMode('luminous');
+applyModeDefaults('luminous');
 updateBuilder();
 year.textContent = new Date().getFullYear();
