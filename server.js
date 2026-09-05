@@ -68,10 +68,10 @@ app.post('/api/lead', async (req, res) => {
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Email</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.email}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Phone</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.phone}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Website</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.website}</td></tr>
-          <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Design mode</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.designMode}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Website style</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.designMode}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Brand colour</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.brandColor}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Layout</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.layout}</td></tr>
-          <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Industry</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.industry}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Business type</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.industry}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Included</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.sections}</td></tr>
         </table>
         <h3 style="margin-top:28px">Notes</h3>

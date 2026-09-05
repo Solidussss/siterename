@@ -2,24 +2,24 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
 const modeData = {
-  luminous: { number: '01', name: 'Luminous', tagline: 'Modern UI with controlled glow and depth.', brand: 'NORTHLINE', domain: 'northlineelectric.ca', kicker: 'CALGARY ELECTRICAL', headline: 'Powering better spaces.' },
-  editorial: { number: '02', name: 'Editorial', tagline: 'Publication-inspired structure with timeless typography.', brand: 'WESTRIDGE', domain: 'westridgelandscape.ca', kicker: 'LANDSCAPE / CALGARY', headline: 'Outdoor spaces, considered.' },
-  precision: { number: '03', name: 'Precision', tagline: 'Minimal, refined and intentionally quiet.', brand: 'ARC PLUMBING', domain: 'arcplumbing.ca', kicker: 'CALGARY PLUMBING', headline: 'Clear work. Zero noise.' },
+  luminous: { number: '01', name: 'Luminous', tagline: 'Modern UI with controlled glow and depth.', brand: 'NORTHLINE', domain: 'yourbusiness.com', kicker: 'ELECTRICAL SERVICES', headline: 'Powering better spaces.' },
+  editorial: { number: '02', name: 'Editorial', tagline: 'Publication-inspired structure with timeless typography.', brand: 'WESTRIDGE', domain: 'yourbusiness.com', kicker: 'LANDSCAPING SERVICES', headline: 'Outdoor spaces, considered.' },
+  precision: { number: '03', name: 'Precision', tagline: 'Minimal, refined and intentionally quiet.', brand: 'ARC PLUMBING', domain: 'yourbusiness.com', kicker: 'PLUMBING SERVICES', headline: 'Clear work. Zero noise.' },
   studio: { number: '04', name: 'Studio', tagline: 'Expressive layouts with contemporary creative energy.', brand: 'NORTHWEST', domain: 'northwestpainting.ca', kicker: 'PAINTING / INTERIORS', headline: 'Colour changes everything.' },
-  executive: { number: '05', name: 'Executive', tagline: 'Established, premium and built around trust.', brand: 'SUMMIT', domain: 'summitrenovations.ca', kicker: 'CALGARY RENOVATIONS', headline: 'Craft built on reputation.' },
-  impact: { number: '06', name: 'Impact', tagline: 'Big, direct and impossible to ignore.', brand: 'FORGE', domain: 'forgeexteriors.ca', kicker: 'ROOFING / EXTERIORS', headline: 'BUILT FOR THE WEATHER.' }
+  executive: { number: '05', name: 'Executive', tagline: 'Established, premium and built around trust.', brand: 'SUMMIT', domain: 'yourbusiness.com', kicker: 'RENOVATION SERVICES', headline: 'Craft built on reputation.' },
+  impact: { number: '06', name: 'Impact', tagline: 'Big, direct and impossible to ignore.', brand: 'FORGE', domain: 'yourbusiness.com', kicker: 'ROOFING & EXTERIORS', headline: 'BUILT FOR THE WEATHER.' }
 };
 
 const industries = {
-  electrical: { label: 'Electrical', kicker: 'CALGARY ELECTRICAL', headline: 'Powering better spaces.', sub: 'Residential and commercial electrical work delivered with clarity, care and zero runaround.', services: ['Residential', 'Commercial', 'Service Calls'] },
-  plumbing: { label: 'Plumbing', kicker: 'CALGARY PLUMBING', headline: 'Clear work. Zero runaround.', sub: 'Straightforward plumbing service, repairs and installations for homes and businesses.', services: ['Emergency', 'Repairs', 'Water Heaters'] },
-  landscaping: { label: 'Landscaping', kicker: 'CALGARY LANDSCAPING', headline: 'Outdoor spaces, considered.', sub: 'Landscaping, stonework and outdoor spaces built to look good and last.', services: ['Landscaping', 'Hardscaping', 'Outdoor Living'] },
-  painting: { label: 'Painting', kicker: 'CALGARY PAINTING', headline: 'Colour changes everything.', sub: 'Interior and exterior painting with clean prep, sharp lines and a finish built to hold up.', services: ['Interiors', 'Exteriors', 'Commercial'] },
-  roofing: { label: 'Roofing', kicker: 'CALGARY ROOFING', headline: 'Built for the weather.', sub: 'Roofing and exterior work backed by clear communication and dependable installation.', services: ['Roofing', 'Exteriors', 'Repairs'] },
-  automotive: { label: 'Automotive', kicker: 'CALGARY AUTOMOTIVE', headline: 'Built for people who care about cars.', sub: 'Detailing, protection and automotive services presented with the same attention as the work itself.', services: ['Detailing', 'Protection', 'Restoration'] },
-  cleaning: { label: 'Cleaning', kicker: 'CALGARY CLEANING', headline: 'A cleaner first impression.', sub: 'Reliable residential and commercial cleaning with simple booking and clear service options.', services: ['Residential', 'Commercial', 'Move-Out'] },
-  renovation: { label: 'Renovation', kicker: 'CALGARY RENOVATIONS', headline: 'Craft built on reputation.', sub: 'Renovation work presented through strong projects, clear process and proof people can trust.', services: ['Kitchens', 'Basements', 'Full Home'] },
-  other: { label: 'Service Business', kicker: 'CALGARY SERVICE BUSINESS', headline: 'Built to look worth calling.', sub: 'A modern website that makes the quality of your business obvious before the first phone call.', services: ['Service One', 'Service Two', 'Service Three'] }
+  electrical: { label: 'Electrical', kicker: 'ELECTRICAL SERVICES', headline: 'Powering better spaces.', sub: 'Residential and commercial electrical work delivered with clarity, care and zero runaround.', services: ['Residential', 'Commercial', 'Service Calls'] },
+  plumbing: { label: 'Plumbing', kicker: 'PLUMBING SERVICES', headline: 'Clear work. Zero runaround.', sub: 'Straightforward plumbing service, repairs and installations for homes and businesses.', services: ['Emergency', 'Repairs', 'Water Heaters'] },
+  landscaping: { label: 'Landscaping', kicker: 'LANDSCAPING SERVICES', headline: 'Outdoor spaces, considered.', sub: 'Landscaping, stonework and outdoor spaces built to look good and last.', services: ['Landscaping', 'Hardscaping', 'Outdoor Living'] },
+  painting: { label: 'Painting', kicker: 'PAINTING SERVICES', headline: 'Colour changes everything.', sub: 'Interior and exterior painting with clean prep, sharp lines and a finish built to hold up.', services: ['Interiors', 'Exteriors', 'Commercial'] },
+  roofing: { label: 'Roofing', kicker: 'ROOFING SERVICES', headline: 'Built for the weather.', sub: 'Roofing and exterior work backed by clear communication and dependable installation.', services: ['Roofing', 'Exteriors', 'Repairs'] },
+  automotive: { label: 'Automotive', kicker: 'AUTOMOTIVE SERVICES', headline: 'Built for people who care about cars.', sub: 'Detailing, protection and automotive services presented with the same attention as the work itself.', services: ['Detailing', 'Protection', 'Restoration'] },
+  cleaning: { label: 'Cleaning', kicker: 'CLEANING SERVICES', headline: 'A cleaner first impression.', sub: 'Reliable residential and commercial cleaning with simple booking and clear service options.', services: ['Residential', 'Commercial', 'Move-Out'] },
+  renovation: { label: 'Renovation', kicker: 'RENOVATION SERVICES', headline: 'Craft built on reputation.', sub: 'Renovation work presented through strong projects, clear process and proof people can trust.', services: ['Kitchens', 'Basements', 'Full Home'] },
+  other: { label: 'Service Business', kicker: 'YOUR BUSINESS', headline: 'Built to look worth calling.', sub: 'A modern website that makes the quality of your business obvious before the first phone call.', services: ['Service One', 'Service Two', 'Service Three'] }
 };
 
 const modeTabs = $$('.mode-tab');
@@ -126,14 +126,14 @@ function updateBuilder() {
 
   summaryMode.textContent = modeData[selectedMode].name;
   summaryColor.textContent = color.toUpperCase();
-  summaryLayout.textContent = titleCase(selectedLayout);
+  summaryLayout.textContent = ({split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1');
   summaryIndustry.textContent = industry.label;
   handoffTitle.textContent = `${business} — ${modeData[selectedMode].name}`;
-  handoffMeta.textContent = `${color.toUpperCase()} · ${titleCase(selectedLayout)} · ${industry.label}`;
+  handoffMeta.textContent = `${color.toUpperCase()} · ${{split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1'} · ${industry.label}`;
   formBusiness.value = business;
   formDesignMode.value = modeData[selectedMode].name;
   formBrandColor.value = color.toUpperCase();
-  formLayout.value = titleCase(selectedLayout);
+  formLayout.value = ({split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1');
   formIndustry.value = industry.label;
   formSections.value = sections.join(', ');
 }
