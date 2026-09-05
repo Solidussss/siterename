@@ -27,3 +27,9 @@
 footer .footer-logo{width:52px;height:52px}
 footer .footer-logo img{width:42px;height:42px}
 @media(max-width:720px){.brand-logo{width:48px;height:48px}.brand-logo img{width:39px;height:39px}}
+
+/* SiteRemade brand mark */
+.brand-logo{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:48px;height:48px}
+.brand-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.footer-logo{width:52px;height:52px}
+@media(max-width:700px){.brand-logo{width:42px;height:42px}.footer-logo{width:48px;height:48px}}
