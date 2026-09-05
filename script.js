@@ -1,60 +1,185 @@
-const styleButtons = document.querySelectorAll('.style-option');
-const demos = document.querySelectorAll('[data-demo]');
-const leadForm = document.getElementById('leadForm');
-const formStatus = document.getElementById('formStatus');
-const year = document.getElementById('year');
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
 
-styleButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const style = button.dataset.style;
-    styleButtons.forEach((item) => item.classList.toggle('active', item === button));
-    demos.forEach((demo) => demo.classList.toggle('active', demo.dataset.demo === style));
-  });
-});
+const modeData = {
+  luminous: { number: '01', name: 'Luminous', tagline: 'Modern UI with controlled glow and depth.', brand: 'NORTHLINE', domain: 'northlineelectric.ca', kicker: 'CALGARY ELECTRICAL', headline: 'Powering better spaces.' },
+  editorial: { number: '02', name: 'Editorial', tagline: 'Publication-inspired structure with timeless typography.', brand: 'WESTRIDGE', domain: 'westridgelandscape.ca', kicker: 'LANDSCAPE / CALGARY', headline: 'Outdoor spaces, considered.' },
+  precision: { number: '03', name: 'Precision', tagline: 'Minimal, refined and intentionally quiet.', brand: 'ARC PLUMBING', domain: 'arcplumbing.ca', kicker: 'CALGARY PLUMBING', headline: 'Clear work. Zero noise.' },
+  studio: { number: '04', name: 'Studio', tagline: 'Expressive layouts with contemporary creative energy.', brand: 'NORTHWEST', domain: 'northwestpainting.ca', kicker: 'PAINTING / INTERIORS', headline: 'Colour changes everything.' },
+  executive: { number: '05', name: 'Executive', tagline: 'Established, premium and built around trust.', brand: 'SUMMIT', domain: 'summitrenovations.ca', kicker: 'CALGARY RENOVATIONS', headline: 'Craft built on reputation.' },
+  impact: { number: '06', name: 'Impact', tagline: 'Big, direct and impossible to ignore.', brand: 'FORGE', domain: 'forgeexteriors.ca', kicker: 'ROOFING / EXTERIORS', headline: 'BUILT FOR THE WEATHER.' }
+};
 
-const revealItems = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealItems.forEach((item) => observer.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add('visible'));
+const industries = {
+  electrical: { label: 'Electrical', kicker: 'CALGARY ELECTRICAL', headline: 'Powering better spaces.', sub: 'Residential and commercial electrical work delivered with clarity, care and zero runaround.', services: ['Residential', 'Commercial', 'Service Calls'] },
+  plumbing: { label: 'Plumbing', kicker: 'CALGARY PLUMBING', headline: 'Clear work. Zero runaround.', sub: 'Straightforward plumbing service, repairs and installations for homes and businesses.', services: ['Emergency', 'Repairs', 'Water Heaters'] },
+  landscaping: { label: 'Landscaping', kicker: 'CALGARY LANDSCAPING', headline: 'Outdoor spaces, considered.', sub: 'Landscaping, stonework and outdoor spaces built to look good and last.', services: ['Landscaping', 'Hardscaping', 'Outdoor Living'] },
+  painting: { label: 'Painting', kicker: 'CALGARY PAINTING', headline: 'Colour changes everything.', sub: 'Interior and exterior painting with clean prep, sharp lines and a finish built to hold up.', services: ['Interiors', 'Exteriors', 'Commercial'] },
+  roofing: { label: 'Roofing', kicker: 'CALGARY ROOFING', headline: 'Built for the weather.', sub: 'Roofing and exterior work backed by clear communication and dependable installation.', services: ['Roofing', 'Exteriors', 'Repairs'] },
+  automotive: { label: 'Automotive', kicker: 'CALGARY AUTOMOTIVE', headline: 'Built for people who care about cars.', sub: 'Detailing, protection and automotive services presented with the same attention as the work itself.', services: ['Detailing', 'Protection', 'Restoration'] },
+  cleaning: { label: 'Cleaning', kicker: 'CALGARY CLEANING', headline: 'A cleaner first impression.', sub: 'Reliable residential and commercial cleaning with simple booking and clear service options.', services: ['Residential', 'Commercial', 'Move-Out'] },
+  renovation: { label: 'Renovation', kicker: 'CALGARY RENOVATIONS', headline: 'Craft built on reputation.', sub: 'Renovation work presented through strong projects, clear process and proof people can trust.', services: ['Kitchens', 'Basements', 'Full Home'] },
+  other: { label: 'Service Business', kicker: 'CALGARY SERVICE BUSINESS', headline: 'Built to look worth calling.', sub: 'A modern website that makes the quality of your business obvious before the first phone call.', services: ['Service One', 'Service Two', 'Service Three'] }
+};
+
+const modeTabs = $$('.mode-tab');
+const modeStage = $('#modeStage');
+const modeNumber = $('#modeNumber');
+const modeName = $('#modeName');
+const modeTagline = $('#modeTagline');
+const modeDomain = $('#modeDomain');
+const previewBrand = $('#previewBrand');
+const previewKicker = $('#previewKicker');
+const previewHeadline = $('#previewHeadline');
+const builderMode = $('#builderMode');
+const businessName = $('#businessName');
+const industrySelect = $('#industrySelect');
+const brandColor = $('#brandColor');
+const brandColorHex = $('#brandColorHex');
+const builderSite = $('#builderSite');
+const builderDevice = $('#builderDevice');
+const siteBusiness = $('#siteBusiness');
+const siteKicker = $('#siteKicker');
+const siteHeadline = $('#siteHeadline');
+const siteSub = $('#siteSub');
+const siteSections = $('#siteSections');
+const summaryMode = $('#summaryMode');
+const summaryColor = $('#summaryColor');
+const summaryLayout = $('#summaryLayout');
+const summaryIndustry = $('#summaryIndustry');
+const handoffTitle = $('#handoffTitle');
+const handoffMeta = $('#handoffMeta');
+const formBusiness = $('#formBusiness');
+const formDesignMode = $('#formDesignMode');
+const formBrandColor = $('#formBrandColor');
+const formLayout = $('#formLayout');
+const formIndustry = $('#formIndustry');
+const formSections = $('#formSections');
+const leadForm = $('#leadForm');
+const formStatus = $('#formStatus');
+const year = $('#year');
+let selectedMode = 'luminous';
+let selectedLayout = 'split';
+let selectedTone = 'auto';
+
+function titleCase(value='') { return value.replace(/\b\w/g, c => c.toUpperCase()); }
+function hexToRgb(hex) { const n = parseInt(hex.replace('#',''),16); return {r:(n>>16)&255,g:(n>>8)&255,b:n&255}; }
+function rgbToHex(r,g,b){ return '#' + [r,g,b].map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join(''); }
+function mix(hex, target, amount){ const a=hexToRgb(hex), b=hexToRgb(target); return rgbToHex(a.r+(b.r-a.r)*amount,a.g+(b.g-a.g)*amount,a.b+(b.b-a.b)*amount); }
+
+function setMode(mode, syncBuilder = true) {
+  selectedMode = mode;
+  const data = modeData[mode];
+  modeTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.mode === mode));
+  modeStage.dataset.mode = mode;
+  modeNumber.textContent = data.number;
+  modeName.textContent = data.name;
+  modeTagline.textContent = data.tagline;
+  modeDomain.textContent = data.domain;
+  previewBrand.textContent = data.brand;
+  previewKicker.textContent = data.kicker;
+  previewHeadline.textContent = data.headline;
+  $$('.mode-dots i').forEach((dot, i) => dot.classList.toggle('active', i === Number(data.number)-1));
+  if (syncBuilder) {
+    builderMode.value = mode;
+    builderSite.dataset.mode = mode;
+    updateBuilder();
+  }
+}
+modeTabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.mode)));
+builderMode.addEventListener('change', e => setMode(e.target.value, true));
+
+function updatePalette(hex) {
+  const dark = mix(hex, '#000000', .55);
+  const light = mix(hex, '#ffffff', .76);
+  const soft = mix(hex, '#ffffff', .91);
+  builderSite.style.setProperty('--site-accent', hex);
+  builderSite.style.setProperty('--site-accent-dark', dark);
+  builderSite.style.setProperty('--site-accent-light', light);
+  document.documentElement.style.setProperty('--picker-primary', hex);
+  document.documentElement.style.setProperty('--picker-dark', dark);
+  document.documentElement.style.setProperty('--picker-light', light);
+  document.documentElement.style.setProperty('--picker-soft', soft);
+  brandColorHex.textContent = hex.toUpperCase();
 }
 
-leadForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
+function selectedSections(){ return $$('.section-toggles input:checked').map(input=>input.value); }
+function updateBuilder() {
+  const business = (businessName.value || 'Your Business').trim();
+  const industry = industries[industrySelect.value] || industries.other;
+  const color = brandColor.value;
+  const displayBusiness = business.toUpperCase();
+  siteBusiness.textContent = displayBusiness;
+  siteKicker.textContent = industry.kicker;
+  siteHeadline.textContent = industry.headline;
+  siteSub.textContent = industry.sub;
+  builderSite.dataset.mode = selectedMode;
+  builderSite.dataset.layout = selectedLayout;
+  builderSite.classList.toggle('tone-light', selectedTone === 'light');
+  builderSite.classList.toggle('tone-dark', selectedTone === 'dark');
+  updatePalette(color);
 
+  const sections = selectedSections();
+  const serviceLabels = industry.services;
+  siteSections.innerHTML = serviceLabels.map((label,i)=>`<div><small>0${i+1}</small><strong>${label}</strong></div>`).join('');
+  siteSections.style.display = sections.includes('services') ? 'grid' : 'none';
+
+  summaryMode.textContent = modeData[selectedMode].name;
+  summaryColor.textContent = color.toUpperCase();
+  summaryLayout.textContent = titleCase(selectedLayout);
+  summaryIndustry.textContent = industry.label;
+  handoffTitle.textContent = `${business} — ${modeData[selectedMode].name}`;
+  handoffMeta.textContent = `${color.toUpperCase()} · ${titleCase(selectedLayout)} · ${industry.label}`;
+  formBusiness.value = business;
+  formDesignMode.value = modeData[selectedMode].name;
+  formBrandColor.value = color.toUpperCase();
+  formLayout.value = titleCase(selectedLayout);
+  formIndustry.value = industry.label;
+  formSections.value = sections.join(', ');
+}
+
+[businessName, industrySelect, brandColor].forEach(el => el.addEventListener('input', updateBuilder));
+$$('.layout-choice').forEach(button => button.addEventListener('click', () => {
+  selectedLayout = button.dataset.layout;
+  $$('.layout-choice').forEach(b => b.classList.toggle('active', b === button));
+  updateBuilder();
+}));
+$$('.tone-toggle button').forEach(button => button.addEventListener('click', () => {
+  selectedTone = button.dataset.tone;
+  $$('.tone-toggle button').forEach(b => b.classList.toggle('active', b === button));
+  updateBuilder();
+}));
+$$('.section-toggles input').forEach(input => input.addEventListener('change', updateBuilder));
+$$('.device-toggle button').forEach(button => button.addEventListener('click', () => {
+  $$('.device-toggle button').forEach(b => b.classList.toggle('active', b === button));
+  builderDevice.classList.toggle('mobile', button.dataset.device === 'mobile');
+}));
+
+const revealItems = $$('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  }), { threshold: .1 });
+  revealItems.forEach(item => observer.observe(item));
+} else revealItems.forEach(item => item.classList.add('visible'));
+
+leadForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  updateBuilder();
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const originalLabel = submitButton.textContent;
   submitButton.disabled = true;
   submitButton.textContent = 'Sending…';
   formStatus.className = 'form-status';
-  formStatus.textContent = 'Sending your project…';
-
+  formStatus.textContent = 'Saving your direction…';
   try {
     const formData = new FormData(leadForm);
     const payload = Object.fromEntries(formData.entries());
-
-    const response = await fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok || !result.ok) {
-      throw new Error(result.message || 'Unable to send your project.');
-    }
-
-    leadForm.reset();
+    const response = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    const result = await response.json().catch(()=>({}));
+    if (!response.ok || !result.ok) throw new Error(result.message || 'Unable to send your design.');
     formStatus.className = 'form-status success';
-    formStatus.textContent = result.message || 'Project received. We’ll get back to you soon.';
+    formStatus.textContent = result.message || 'Design received. We’ll review it and get back to you.';
   } catch (error) {
     formStatus.className = 'form-status error';
     formStatus.textContent = error.message || 'Something went wrong. Please email hello@siteremade.com.';
@@ -64,4 +189,6 @@ leadForm.addEventListener('submit', async (event) => {
   }
 });
 
+setMode('luminous');
+updateBuilder();
 year.textContent = new Date().getFullYear();

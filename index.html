@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiteRemade — Your Website. Remade.</title>
-  <meta name="description" content="Modern business websites starting at $750 CAD. SiteRemade rebuilds outdated websites into clean, responsive websites designed for modern businesses." />
+  <title>SiteRemade — Build Your Website Direction</title>
+  <meta name="description" content="Build a website direction that actually feels like your business. Choose a style, set your brand colour, shape the layout and send the exact concept to SiteRemade." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="nav">
-    <a href="#top" class="brand">SITEREMADE</a>
+  <div class="page-glow glow-a"></div>
+  <div class="page-glow glow-b"></div>
+
+  <header class="nav" id="top">
+    <a href="#top" class="brand" aria-label="SiteRemade home">SITEREMADE</a>
     <nav class="nav-links">
-      <a href="#styles">Styles</a>
-      <a href="#included">What's Included</a>
+      <a href="#build">Build yours</a>
+      <a href="#why">Why it works</a>
       <a href="#pricing">Pricing</a>
-      <a href="#process">Process</a>
     </nav>
-    <a href="#start" class="button button-small">Start Your Website</a>
+    <a href="#build" class="button button-small">Build Your Look</a>
   </header>
 
-  <main id="top">
+  <main>
     <section class="hero reveal">
       <div class="hero-copy">
-        <p class="eyebrow">WEBSITES FOR MODERN BUSINESSES</p>
-        <h1>Your website.<span>Remade.</span></h1>
-        <p class="hero-description">We rebuild outdated business websites into cleaner, faster, more convincing experiences that look great on every screen.</p>
+        <p class="eyebrow">WEBSITES THAT FEEL LIKE YOUR BUSINESS</p>
+        <h1>Don't pick a template.<span>Build a direction.</span></h1>
+        <p class="hero-description">Choose one of six polished design modes, make it yours, and send us the exact website direction you want. No guessing. No generic contractor template.</p>
         <div class="hero-actions">
-          <a href="#start" class="button">Start Your Website</a>
-          <a href="#styles" class="button button-secondary">See Styles</a>
+          <a href="#build" class="button">Build Your Website</a>
+          <a href="#modes" class="button button-secondary">See the 6 modes</a>
         </div>
         <div class="hero-meta">
           <span>Starting at $750 CAD</span>
@@ -36,192 +38,215 @@
         </div>
       </div>
 
-      <div class="showcase-frame" aria-label="Website style preview">
-        <div class="browser-shell">
+      <div class="hero-machine" aria-label="Animated SiteRemade preview">
+        <div class="machine-topline"><span>LIVE DESIGN SYSTEM</span><span>01 / 06</span></div>
+        <div class="hero-browser">
           <div class="browser-top">
             <div class="browser-dots"><span></span><span></span><span></span></div>
             <div class="browser-address">yourbusiness.com</div>
-            <div class="browser-status">LIVE PREVIEW</div>
+            <div class="browser-status">LIVE</div>
           </div>
-
-          <div class="demo-stage" id="demoStage">
-            <article class="demo-site demo-minimal active" data-demo="minimal">
-              <div class="demo-nav minimal-nav">
-                <strong>WESTRIDGE</strong>
-                <div><span>Work</span><span>Services</span><span>About</span></div>
-                <button>Get a Quote</button>
-              </div>
-              <div class="minimal-hero">
-                <div>
-                  <p>LANDSCAPE DESIGN / CALGARY</p>
-                  <h2>Outdoor spaces, considered.</h2>
-                </div>
-                <div class="minimal-project-card">
-                  <span>FEATURED PROJECT</span>
-                  <strong>Springbank Residence</strong>
-                  <small>Landscape · Stonework · Lighting</small>
-                </div>
-              </div>
-              <div class="minimal-footer-row"><span>Landscaping</span><span>Hardscaping</span><span>Outdoor Living</span></div>
-            </article>
-
-            <article class="demo-site demo-premium" data-demo="premium">
-              <div class="demo-nav premium-nav">
-                <strong>WESTRIDGE</strong>
-                <div><span>Services</span><span>Projects</span><span>Contact</span></div>
-                <button>Private Consultation</button>
-              </div>
-              <div class="premium-hero">
-                <p>CRAFTED OUTDOOR ENVIRONMENTS</p>
-                <h2>Built quietly.<br />Remembered forever.</h2>
-                <div class="premium-actions"><button>Explore Projects</button><span>Calgary · Alberta</span></div>
-              </div>
-              <div class="premium-strip">
-                <span>01 / Design</span><span>02 / Build</span><span>03 / Maintain</span>
-              </div>
-            </article>
-
-            <article class="demo-site demo-bold" data-demo="bold">
-              <div class="demo-nav bold-nav">
-                <strong>WESTRIDGE®</strong>
-                <div><span>PROJECTS</span><span>SERVICES</span><span>CONTACT</span></div>
-                <button>START A PROJECT</button>
-              </div>
-              <div class="bold-hero">
-                <div class="bold-kicker">CALGARY / OUTDOOR CONSTRUCTION</div>
-                <h2>WE BUILD<br />OUTSIDE.</h2>
-                <div class="bold-bottom"><button>SEE THE WORK ↗</button><span>LANDSCAPE · STONE · STRUCTURE</span></div>
-              </div>
-              <div class="bold-marquee">LANDSCAPING — HARDSCAPING — OUTDOOR LIVING — RETAINING WALLS —</div>
-            </article>
+          <div class="hero-demo" id="heroDemo">
+            <div class="hero-demo-grid"></div>
+            <div class="hero-demo-copy">
+              <p>CALGARY SERVICE BUSINESS</p>
+              <h2>Built to look worth calling.</h2>
+              <div class="hero-demo-actions"><span>View work</span><strong>Request a quote ↗</strong></div>
+            </div>
+            <div class="floating-card card-one"><small>STYLE</small><strong>Precision</strong></div>
+            <div class="floating-card card-two"><small>BRAND</small><strong>#315CFF</strong></div>
+            <div class="floating-card card-three"><small>LAYOUT</small><strong>Hero 03</strong></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="styles-section reveal" id="styles">
-      <div class="section-heading">
-        <p class="eyebrow">CHOOSE A DIRECTION</p>
-        <h2>Not every business should look the same.</h2>
-        <p>Choose the visual direction that feels right. We use it as a starting point, then adapt the site around your business, content and customers.</p>
+    <section class="modes-section reveal" id="modes">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">01 — CHOOSE A DIRECTION</p>
+          <h2>Six ways your business can feel.</h2>
+        </div>
+        <p>Every mode is modern. Every mode is professional. The difference is the design language — not the quality.</p>
       </div>
-      <div class="style-controls" role="tablist" aria-label="Website style options">
-        <button class="style-option active" data-style="minimal"><span>01</span><strong>Minimal</strong><small>Clean, calm, image-led.</small></button>
-        <button class="style-option" data-style="premium"><span>02</span><strong>Premium</strong><small>Dark, refined, high-end.</small></button>
-        <button class="style-option" data-style="bold"><span>03</span><strong>Bold</strong><small>Loud typography, stronger energy.</small></button>
+
+      <div class="mode-showcase" id="modeShowcase">
+        <div class="mode-rail" id="modeRail" role="tablist" aria-label="Website design modes">
+          <button class="mode-tab active" data-mode="luminous"><span>01</span><strong>Luminous</strong><small>Glow / interface / cinematic</small></button>
+          <button class="mode-tab" data-mode="editorial"><span>02</span><strong>Editorial</strong><small>Publication / serif / structured</small></button>
+          <button class="mode-tab" data-mode="precision"><span>03</span><strong>Precision</strong><small>Minimal / clean / product-led</small></button>
+          <button class="mode-tab" data-mode="studio"><span>04</span><strong>Studio</strong><small>Creative / expressive / modern</small></button>
+          <button class="mode-tab" data-mode="executive"><span>05</span><strong>Executive</strong><small>Premium / trusted / established</small></button>
+          <button class="mode-tab" data-mode="impact"><span>06</span><strong>Impact</strong><small>Bold / direct / commercial</small></button>
+        </div>
+
+        <div class="mode-stage-wrap">
+          <div class="mode-stage" id="modeStage" data-mode="luminous">
+            <div class="mode-stage-header">
+              <div><span id="modeNumber">01</span><strong id="modeName">Luminous</strong></div>
+              <p id="modeTagline">Modern UI with controlled glow and depth.</p>
+            </div>
+            <div class="mode-browser">
+              <div class="mode-window-bar"><span></span><span></span><span></span><em id="modeDomain">northlineelectric.ca</em></div>
+              <div class="mode-preview" id="modePreview">
+                <div class="preview-nav"><strong id="previewBrand">NORTHLINE</strong><div><span>Services</span><span>Work</span><span>About</span></div><button>Get a Quote</button></div>
+                <div class="preview-hero">
+                  <div class="preview-copy"><p id="previewKicker">CALGARY ELECTRICAL</p><h3 id="previewHeadline">Powering better spaces.</h3><p class="preview-sub">Clear service. Clean work. A website built to match.</p><div class="preview-cta"><button>Request a Quote</button><span>View recent work ↗</span></div></div>
+                  <div class="preview-art" aria-hidden="true"><div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div><div class="art-core"></div><div class="art-stat stat-a"><small>PROJECTS</small><strong>184</strong></div><div class="art-stat stat-b"><small>RATING</small><strong>4.9</strong></div></div>
+                </div>
+                <div class="preview-strip"><span>Residential</span><span>Commercial</span><span>Service</span><span>Renovation</span></div>
+              </div>
+            </div>
+            <div class="mode-stage-footer">
+              <div class="mode-dots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i><i></i><i></i></div>
+              <a href="#build" class="button">Customize this direction</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="before-after reveal" id="remade">
-      <div class="section-heading">
-        <p class="eyebrow">BEFORE / REMADE</p>
-        <h2>A better business deserves a better first impression.</h2>
-        <p>This is an example redesign showing the kind of difference we target: clearer actions, stronger hierarchy, better mobile thinking and a site that actually reflects the quality of the business.</p>
+    <section class="builder-section reveal" id="build">
+      <div class="builder-intro">
+        <p class="eyebrow">02 — MAKE IT YOURS</p>
+        <h2>Build the base. We'll make it real.</h2>
+        <p>You're not building the finished website here. You're showing us the direction — style, colour, business type and layout — so we know exactly what you want before we talk.</p>
       </div>
-      <div class="comparison-grid">
-        <article class="comparison-card before-card">
-          <div class="comparison-label">BEFORE</div>
-          <div class="old-site">
-            <div class="old-head"><b>Westridge Landscaping</b><span>Home | About | Services | Contact</span></div>
-            <div class="old-hero"><h3>Welcome To Our Website</h3><p>Professional landscaping services in Calgary and surrounding areas. Call today for more information.</p><button>Learn More</button></div>
-            <div class="old-columns"><div>Landscaping</div><div>Patios</div><div>Retaining Walls</div></div>
-          </div>
-          <ul class="issue-list"><li>Weak first impression</li><li>Buried quote path</li><li>Generic hierarchy</li><li>Poor project presentation</li></ul>
-        </article>
 
-        <article class="comparison-card after-card">
-          <div class="comparison-label">REMADE</div>
-          <div class="new-site">
-            <div class="new-head"><b>WESTRIDGE</b><span>Projects · Services · About</span><button>Request a Quote</button></div>
-            <div class="new-hero"><p>CALGARY LANDSCAPE DESIGN</p><h3>Outdoor spaces built to last.</h3><button>View Projects</button></div>
-            <div class="new-foot"><span>01 Landscaping</span><span>02 Hardscaping</span><span>03 Outdoor Living</span></div>
+      <div class="builder-shell">
+        <aside class="builder-controls">
+          <div class="builder-progress"><span class="active">STYLE</span><span>BRAND</span><span>LAYOUT</span><span>PREVIEW</span></div>
+
+          <div class="control-block">
+            <label class="control-label">Design mode</label>
+            <div class="select-wrap"><select id="builderMode">
+              <option value="luminous">Luminous</option>
+              <option value="editorial">Editorial</option>
+              <option value="precision">Precision</option>
+              <option value="studio">Studio</option>
+              <option value="executive">Executive</option>
+              <option value="impact">Impact</option>
+            </select></div>
           </div>
-          <ul class="issue-list success"><li>Clear primary action</li><li>Modern mobile-first layout</li><li>Stronger project focus</li><li>More credible presentation</li></ul>
-        </article>
+
+          <div class="control-block two-col-control">
+            <label><span class="control-label">Business name</span><input id="businessName" type="text" value="Northline Electric" maxlength="60" /></label>
+            <label><span class="control-label">Industry</span><select id="industrySelect">
+              <option value="electrical">Electrical</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="landscaping">Landscaping</option>
+              <option value="painting">Painting</option>
+              <option value="roofing">Roofing</option>
+              <option value="automotive">Automotive</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="renovation">Renovation</option>
+              <option value="other">Other</option>
+            </select></label>
+          </div>
+
+          <div class="control-block color-block">
+            <div class="control-title-row"><label class="control-label" for="brandColor">Brand colour</label><output id="brandColorHex">#315CFF</output></div>
+            <div class="color-picker-row"><input id="brandColor" type="color" value="#315cff" /><div class="color-swatch-preview"><span></span><span></span><span></span><span></span></div></div>
+            <div class="tone-toggle" role="group" aria-label="Website background tone"><button class="active" type="button" data-tone="auto">Auto</button><button type="button" data-tone="light">Light</button><button type="button" data-tone="dark">Dark</button></div>
+          </div>
+
+          <div class="control-block">
+            <label class="control-label">Opening layout</label>
+            <div class="layout-options">
+              <button type="button" class="layout-choice active" data-layout="split"><span class="layout-mini mini-split"><i></i><i></i></span><strong>Split</strong></button>
+              <button type="button" class="layout-choice" data-layout="center"><span class="layout-mini mini-center"><i></i><i></i></span><strong>Centered</strong></button>
+              <button type="button" class="layout-choice" data-layout="poster"><span class="layout-mini mini-poster"><i></i><i></i></span><strong>Poster</strong></button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <label class="control-label">Include</label>
+            <div class="section-toggles">
+              <label><input type="checkbox" value="services" checked /> Services</label>
+              <label><input type="checkbox" value="projects" checked /> Projects</label>
+              <label><input type="checkbox" value="reviews" checked /> Reviews</label>
+              <label><input type="checkbox" value="faq" /> FAQ</label>
+              <label><input type="checkbox" value="service-area" checked /> Service Area</label>
+              <label><input type="checkbox" value="quote" checked /> Quote Form</label>
+            </div>
+          </div>
+        </aside>
+
+        <div class="builder-preview-wrap">
+          <div class="preview-toolbar">
+            <div><span class="status-dot"></span><span>YOUR LIVE DIRECTION</span></div>
+            <div class="device-toggle"><button type="button" class="active" data-device="desktop">Desktop</button><button type="button" data-device="mobile">Mobile</button></div>
+          </div>
+          <div class="builder-device" id="builderDevice">
+            <div class="builder-site" id="builderSite" data-mode="luminous" data-layout="split">
+              <div class="site-nav"><strong id="siteBusiness">NORTHLINE ELECTRIC</strong><div><span>Services</span><span>Projects</span><span>About</span></div><button>Get a Quote</button></div>
+              <div class="site-hero">
+                <div class="site-copy"><p id="siteKicker">CALGARY ELECTRICAL</p><h3 id="siteHeadline">Powering better spaces.</h3><p id="siteSub">Residential and commercial electrical work delivered with clarity, care and zero runaround.</p><div class="site-actions"><button>Request a Quote</button><span>See our work ↗</span></div></div>
+                <div class="site-visual"><div class="visual-grid"></div><div class="visual-mark">N</div><div class="visual-card"><small>LOCAL RATING</small><strong>4.9 / 5</strong></div></div>
+              </div>
+              <div class="site-sections" id="siteSections"><div><small>01</small><strong>Residential</strong></div><div><small>02</small><strong>Commercial</strong></div><div><small>03</small><strong>Service Calls</strong></div></div>
+            </div>
+          </div>
+          <div class="preview-summary"><span id="summaryMode">Luminous</span><span id="summaryColor">#315CFF</span><span id="summaryLayout">Split</span><span id="summaryIndustry">Electrical</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="included-section reveal" id="included">
-      <div class="section-heading"><p class="eyebrow">THE BASE WEBSITE</p><h2>Everything you need to launch.</h2></div>
-      <div class="included-grid">
-        <article><span>01</span><h3>Responsive Design</h3><p>Built for desktop, tablet and mobile from day one.</p></article>
-        <article><span>02</span><h3>Contact & Quote Forms</h3><p>Give visitors an obvious path to contact your business.</p></article>
-        <article><span>03</span><h3>Basic Analytics</h3><p>Know how people are finding and using your website.</p></article>
-        <article><span>04</span><h3>Domain Setup</h3><p>We handle the technical connection and launch process.</p></article>
-        <article><span>05</span><h3>Business Content</h3><p>Your services, photos, company information and branding.</p></article>
-        <article><span>06</span><h3>Full Ownership</h3><p>Your website, domain and source. No forced platform lock-in.</p></article>
+    <section class="handoff-section reveal" id="send">
+      <div class="handoff-copy">
+        <p class="eyebrow">03 — SEND YOUR DIRECTION</p>
+        <h2>Show us exactly what you want.</h2>
+        <p>Send the direction you built. We'll review it against your real business and get back to you with what we'd recommend. No commitment just for sending it.</p>
+        <div class="handoff-preview-card">
+          <span>YOUR DIRECTION</span>
+          <strong id="handoffTitle">Northline Electric — Luminous</strong>
+          <p id="handoffMeta">#315CFF · Split · Electrical</p>
+        </div>
+      </div>
+
+      <form class="lead-form" id="leadForm">
+        <div class="hp-field" aria-hidden="true"><label>Company website<input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" /></label></div>
+        <input type="hidden" name="designMode" id="formDesignMode" />
+        <input type="hidden" name="brandColor" id="formBrandColor" />
+        <input type="hidden" name="layout" id="formLayout" />
+        <input type="hidden" name="industry" id="formIndustry" />
+        <input type="hidden" name="sections" id="formSections" />
+
+        <label>Your name<input type="text" name="name" required /></label>
+        <label>Business name<input type="text" name="business" id="formBusiness" required /></label>
+        <label>Existing website<input type="url" name="website" placeholder="https://yourbusiness.com" /></label>
+        <label>Email<input type="email" name="email" required /></label>
+        <label>Phone<input type="tel" name="phone" /></label>
+        <label class="full-width">Anything you want us to know?<textarea name="message" rows="4" placeholder="Optional — services, pages, features, anything you want changed."></textarea></label>
+        <button class="button full-width" type="submit">Send My Design</button>
+        <p class="form-status" id="formStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="why-section reveal" id="why">
+      <div class="section-heading split-heading">
+        <div><p class="eyebrow">WHY THIS WORKS</p><h2>No awkward design vocabulary.</h2></div>
+        <p>You don't need to explain “modern but not too modern.” Pick what feels right, make it yours, and we start from something both of us can actually see.</p>
+      </div>
+      <div class="why-grid">
+        <article><span>01</span><h3>See it first.</h3><p>Pick from six strong directions instead of buying blind.</p></article>
+        <article><span>02</span><h3>Make it yours.</h3><p>Your colour, business, industry and preferred layout update live.</p></article>
+        <article><span>03</span><h3>Send the exact brief.</h3><p>We receive the direction you created so the first conversation starts further ahead.</p></article>
       </div>
     </section>
 
     <section class="pricing-section reveal" id="pricing">
-      <div class="pricing-copy">
-        <p class="eyebrow">STRAIGHTFORWARD PRICING</p>
-        <h2>Start simple. Add only what you need.</h2>
-        <p>Most businesses don't need a giant custom software project. Start with the website, then add functionality only when it actually creates value.</p>
-      </div>
-      <div class="pricing-card">
-        <p class="pricing-label">BUSINESS WEBSITE</p>
-        <div class="price"><span>$750</span><small>CAD starting</small></div>
-        <ul><li>Modern responsive website</li><li>Up to 5 standard pages</li><li>Contact / quote form</li><li>Basic analytics</li><li>Domain setup & launch</li><li>Website ownership</li></ul>
-        <a href="#start" class="button">Start Your Website</a>
-        <p class="pricing-note">Custom functionality and larger projects are quoted separately.</p>
-      </div>
+      <div class="pricing-copy"><p class="eyebrow">STRAIGHTFORWARD PRICING</p><h2>A real business website without agency theatre.</h2><p>Start with the core site. Add custom functionality only when it actually creates value for the business.</p></div>
+      <div class="pricing-card"><p class="pricing-label">BUSINESS WEBSITE</p><div class="price"><span>$750</span><small>CAD starting</small></div><ul><li>Modern responsive website</li><li>Up to 5 standard pages</li><li>Contact / quote flow</li><li>Basic analytics</li><li>Domain setup & launch</li><li>Full website ownership</li></ul><a href="#build" class="button">Build Your Direction</a><p class="pricing-note">Custom functionality and larger projects are quoted separately.</p></div>
     </section>
 
-    <section class="upgrades-section reveal">
-      <div class="section-heading"><p class="eyebrow">WHEN YOU NEED MORE</p><h2>Add only what your business needs.</h2></div>
-      <div class="upgrade-list">
-        <div><span>Business Email</span><strong>+$100–200</strong></div>
-        <div><span>Advanced Quote / Intake</span><strong>+$200–500</strong></div>
-        <div><span>Booking Integration</span><strong>+$200–500</strong></div>
-        <div><span>Custom Motion & Interactions</span><strong>+$250–750</strong></div>
-        <div><span>AI Assistant</span><strong>+$300–750+</strong></div>
-        <div><span>Accounts / Payments / Custom Backend</span><strong>Custom Quote</strong></div>
-      </div>
-    </section>
-
-    <section class="process-section reveal" id="process">
-      <div class="section-heading"><p class="eyebrow">HOW IT WORKS</p><h2>No drawn-out agency process.</h2></div>
-      <div class="process-grid">
-        <article><span>01</span><h3>Choose a direction.</h3><p>Tell us what you want changed and select a visual style.</p></article>
-        <article><span>02</span><h3>We remake it.</h3><p>We build your new website using your real business information.</p></article>
-        <article><span>03</span><h3>Review it.</h3><p>See the website, request changes and choose any upgrades.</p></article>
-        <article><span>04</span><h3>We launch.</h3><p>We connect your domain, test everything and put it live.</p></article>
-      </div>
-    </section>
-
-    <section class="ownership-section reveal">
-      <p class="eyebrow">NO LOCK-IN</p>
-      <h2>Your website. Your domain. Your code.</h2>
-      <p>You shouldn't have to stay with us just to keep the website you paid for.</p>
-    </section>
-
-    <section class="start-section reveal" id="start">
-      <div class="start-copy">
-        <p class="eyebrow">START YOUR WEBSITE</p>
-        <h2>Show us what you're working with.</h2>
-        <p>Have an existing website? Send it over. We'll review it and get back to you with the next step.</p>
-        <a class="text-link" href="mailto:hello@siteremade.com">Prefer email? hello@siteremade.com ↗</a>
-      </div>
-      <form class="lead-form" id="leadForm">
-        <div class="hp-field" aria-hidden="true"><label>Company website<input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" /></label></div>
-        <label>Your name<input type="text" name="name" required /></label>
-        <label>Business name<input type="text" name="business" required /></label>
-        <label>Existing website<input type="url" name="website" placeholder="https://yourbusiness.com" /></label>
-        <label>Email<input type="email" name="email" required /></label>
-        <label>Phone<input type="tel" name="phone" /></label>
-        <label>What are you looking for?<select name="project"><option>Website redesign</option><option>New website</option><option>Website + custom features</option></select></label>
-        <label class="full-width">Anything you'd like changed or added?<textarea name="message" rows="5"></textarea></label>
-        <button class="button full-width" type="submit">Submit Project</button>
-        <p class="form-status" id="formStatus" aria-live="polite"></p>
-      </form>
-    </section>
+    <section class="ownership-section reveal"><p class="eyebrow">NO LOCK-IN</p><h2>Your website. Your domain. Your code.</h2><p>You shouldn't have to stay with us just to keep the website you paid for.</p></section>
   </main>
 
   <footer>
     <a href="#top" class="brand">SITEREMADE</a>
-    <p>Modern websites for modern businesses.</p>
-    <div><a href="#pricing">Pricing</a><a href="#start">Start Your Website</a></div>
+    <p>Build the direction. We'll build the website.</p>
+    <div><a href="#build">Customizer</a><a href="#pricing">Pricing</a></div>
     <p>© <span id="year"></span> SiteRemade</p>
   </footer>
 
