@@ -50,6 +50,13 @@ const backgroundColorHex = $('#backgroundColorHex');
 const textColor = $('#textColor');
 const textColorHex = $('#textColorHex');
 const resetColors = $('#resetColors');
+const businessLogo = $('#businessLogo');
+const chooseLogo = $('#chooseLogo');
+const removeLogo = $('#removeLogo');
+const logoPreviewBox = $('#logoPreviewBox');
+const logoPreviewImage = $('#logoPreviewImage');
+const logoPlaceholder = $('#logoPlaceholder');
+const siteLogo = $('#siteLogo');
 const builderSite = $('#builderSite');
 const builderDevice = $('#builderDevice');
 const siteBusiness = $('#siteBusiness');
@@ -68,6 +75,8 @@ const formDesignMode = $('#formDesignMode');
 const formBrandColor = $('#formBrandColor');
 const formBackgroundColor = $('#formBackgroundColor');
 const formTextColor = $('#formTextColor');
+const formLogoName = $('#formLogoName');
+const formLogoData = $('#formLogoData');
 const formLayout = $('#formLayout');
 const formIndustry = $('#formIndustry');
 const formSections = $('#formSections');
@@ -76,6 +85,8 @@ const formStatus = $('#formStatus');
 const year = $('#year');
 let selectedMode = 'luminous';
 let selectedLayout = 'split';
+let uploadedLogoData = '';
+let uploadedLogoName = '';
 
 function titleCase(value='') { return value.replace(/\b\w/g, c => c.toUpperCase()); }
 function hexToRgb(hex) { const n = parseInt(hex.replace('#',''),16); return {r:(n>>16)&255,g:(n>>8)&255,b:n&255}; }
@@ -148,6 +159,17 @@ function updateBuilder() {
   const txtColor = textColor.value;
   const displayBusiness = business.toUpperCase();
   siteBusiness.textContent = displayBusiness;
+  if (uploadedLogoData) {
+    siteLogo.src = uploadedLogoData;
+    siteLogo.alt = `${business} logo`;
+    siteLogo.classList.add('active');
+    siteBusiness.classList.add('logo-active');
+  } else {
+    siteLogo.removeAttribute('src');
+    siteLogo.alt = '';
+    siteLogo.classList.remove('active');
+    siteBusiness.classList.remove('logo-active');
+  }
   siteKicker.textContent = industry.kicker;
   siteHeadline.textContent = industry.headline;
   siteSub.textContent = industry.sub;
@@ -171,12 +193,86 @@ function updateBuilder() {
   formBrandColor.value = color.toUpperCase();
   formBackgroundColor.value = bgColor.toUpperCase();
   formTextColor.value = txtColor.toUpperCase();
+  formLogoName.value = uploadedLogoName;
+  formLogoData.value = uploadedLogoData;
   formLayout.value = ({split:'Layout 1', center:'Layout 2', poster:'Layout 3'}[selectedLayout] || 'Layout 1');
   formIndustry.value = industry.label;
   formSections.value = sections.join(', ');
 }
 
 [businessName, industrySelect, brandColor, backgroundColor, textColor].forEach(el => el.addEventListener('input', updateBuilder));
+
+chooseLogo.addEventListener('click', () => businessLogo.click());
+logoPreviewBox.addEventListener('click', () => businessLogo.click());
+
+function clearLogo() {
+  uploadedLogoData = '';
+  uploadedLogoName = '';
+  businessLogo.value = '';
+  logoPreviewImage.removeAttribute('src');
+  logoPreviewImage.classList.remove('active');
+  logoPlaceholder.hidden = false;
+  removeLogo.hidden = true;
+  updateBuilder();
+}
+
+removeLogo.addEventListener('click', clearLogo);
+
+businessLogo.addEventListener('change', event => {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const allowed = ['image/png','image/jpeg','image/webp','image/svg+xml'];
+  if (!allowed.includes(file.type)) {
+    alert('Please choose a PNG, JPG, WEBP or SVG logo.');
+    clearLogo();
+    return;
+  }
+  if (file.size > 4 * 1024 * 1024) {
+    alert('Please use a logo smaller than 4 MB.');
+    clearLogo();
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const original = reader.result;
+
+    // SVG can stay as-is. Raster images are resized to keep the submission light.
+    if (file.type === 'image/svg+xml') {
+      uploadedLogoData = original;
+      uploadedLogoName = file.name;
+      logoPreviewImage.src = original;
+      logoPreviewImage.classList.add('active');
+      logoPlaceholder.hidden = true;
+      removeLogo.hidden = false;
+      updateBuilder();
+      return;
+    }
+
+    const img = new Image();
+    img.onload = () => {
+      const maxW = 720, maxH = 360;
+      const scale = Math.min(1, maxW / img.width, maxH / img.height);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.width * scale));
+      canvas.height = Math.max(1, Math.round(img.height * scale));
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      uploadedLogoData = canvas.toDataURL('image/png', 0.92);
+      uploadedLogoName = file.name.replace(/\.[^.]+$/, '') + '.png';
+      logoPreviewImage.src = uploadedLogoData;
+      logoPreviewImage.classList.add('active');
+      logoPlaceholder.hidden = true;
+      removeLogo.hidden = false;
+      updateBuilder();
+    };
+    img.src = original;
+  };
+  reader.readAsDataURL(file);
+});
+
 $$('.layout-choice').forEach(button => button.addEventListener('click', () => {
   selectedLayout = button.dataset.layout;
   $$('.layout-choice').forEach(b => b.classList.toggle('active', b === button));

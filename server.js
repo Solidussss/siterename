@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 8080;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 app.disable('x-powered-by');
-app.use(express.json({ limit: '75kb' }));
-app.use(express.urlencoded({ extended: false, limit: '75kb' }));
+app.use(express.json({ limit: '900kb' }));
+app.use(express.urlencoded({ extended: false, limit: '900kb' }));
 app.use(express.static(__dirname));
 
 function escapeHtml(value = '') {
@@ -45,6 +45,8 @@ app.post('/api/lead', async (req, res) => {
     const brandColor = clean(req.body.brandColor, 30);
     const backgroundColor = clean(req.body.backgroundColor, 30);
     const textColor = clean(req.body.textColor, 30);
+    const logoName = clean(req.body.logoName, 180);
+    const logoData = clean(req.body.logoData, 800000);
     const layout = clean(req.body.layout, 80);
     const industry = clean(req.body.industry, 120);
     const sections = clean(req.body.sections, 1000);
@@ -58,6 +60,7 @@ app.post('/api/lead', async (req, res) => {
       email: escapeHtml(email), phone: escapeHtml(phone || 'Not provided'), message: escapeHtml(message || 'No additional notes'),
       designMode: escapeHtml(designMode || 'Not provided'), brandColor: escapeHtml(brandColor || 'Not provided'),
       backgroundColor: escapeHtml(backgroundColor || 'Not provided'), textColor: escapeHtml(textColor || 'Not provided'),
+      logoName: escapeHtml(logoName || 'Not provided'),
       layout: escapeHtml(layout || 'Not provided'), industry: escapeHtml(industry || 'Not provided'), sections: escapeHtml(sections || 'Not provided')
     };
 
@@ -75,6 +78,7 @@ app.post('/api/lead', async (req, res) => {
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Main colour</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.brandColor}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Background</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.backgroundColor}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Text</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.textColor}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Logo</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.logoName}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Layout</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.layout}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Business type</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.industry}</td></tr>
           <tr><td style="padding:12px 0;border-bottom:1px solid #ddd;font-weight:700">Included</td><td style="padding:12px 0;border-bottom:1px solid #ddd">${safe.sections}</td></tr>
@@ -83,9 +87,22 @@ app.post('/api/lead', async (req, res) => {
         <p style="white-space:pre-wrap;line-height:1.6">${safe.message}</p>
       </div>`;
 
+    let logoAttachments;
+    if (logoData && /^data:image\/(png|jpeg|webp|svg\+xml);base64,/.test(logoData)) {
+      const match = logoData.match(/^data:(image\/(?:png|jpeg|webp|svg\+xml));base64,(.+)$/);
+      if (match) {
+        const ext = match[1] === 'image/jpeg' ? 'jpg' : match[1] === 'image/svg+xml' ? 'svg' : match[1].split('/')[1];
+        logoAttachments = [{
+          filename: logoName || `business-logo.${ext}`,
+          content: match[2]
+        }];
+      }
+    }
+
     await sendEmail({
       from: 'SiteRemade Leads <leads@siteremade.com>', to: ['hello@siteremade.com'], reply_to: email,
       subject: `New SiteRemade design — ${business}`, html: leadHtml,
+      ...(logoAttachments ? { attachments: logoAttachments } : {})
     });
 
     await sendEmail({

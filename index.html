@@ -146,6 +146,27 @@
             </select></label>
           </div>
 
+          <div class="control-block logo-control-block">
+            <label class="control-label">Business logo</label>
+            <div class="logo-uploader" id="logoUploader">
+              <input id="businessLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" />
+              <div class="logo-upload-preview">
+                <div class="logo-preview-box" id="logoPreviewBox">
+                  <span id="logoPlaceholder">Add logo</span>
+                  <img id="logoPreviewImage" alt="Your business logo preview" />
+                </div>
+                <div class="logo-upload-copy">
+                  <strong>Use your real logo</strong>
+                  <small>PNG, JPG, WEBP or SVG. We’ll fit it cleanly without stretching it.</small>
+                  <div class="logo-upload-actions">
+                    <button type="button" class="logo-upload-button" id="chooseLogo">Choose Logo</button>
+                    <button type="button" class="logo-remove-button" id="removeLogo" hidden>Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="control-block color-block">
             <label class="control-label">Website colours</label>
             <div class="full-color-grid">
@@ -195,7 +216,7 @@
           </div>
           <div class="builder-device" id="builderDevice">
             <div class="builder-site" id="builderSite" data-mode="luminous" data-layout="split">
-              <div class="site-nav"><strong id="siteBusiness">NORTHLINE ELECTRIC</strong><div><span>Services</span><span>Projects</span><span>About</span></div><button>Get a Quote</button></div>
+              <div class="site-nav"><div class="site-brand-lockup"><img id="siteLogo" alt="" /><strong id="siteBusiness">NORTHLINE ELECTRIC</strong></div><div><span>Services</span><span>Projects</span><span>About</span></div><button>Get a Quote</button></div>
               <div class="site-hero">
                 <div class="site-copy"><p id="siteKicker">ELECTRICAL SERVICES</p><h3 id="siteHeadline">Powering better spaces.</h3><p id="siteSub">Residential and commercial electrical work delivered with clarity, care and zero runaround.</p><div class="site-actions"><button>Request a Quote</button><span>See our work ↗</span></div></div>
                 <div class="site-visual"><div class="visual-grid"></div><div class="visual-mark">N</div><div class="visual-card"><small>LOCAL RATING</small><strong>4.9 / 5</strong></div></div>
@@ -226,6 +247,8 @@
         <input type="hidden" name="brandColor" id="formBrandColor" />
         <input type="hidden" name="backgroundColor" id="formBackgroundColor" />
         <input type="hidden" name="textColor" id="formTextColor" />
+        <input type="hidden" name="logoName" id="formLogoName" />
+        <input type="hidden" name="logoData" id="formLogoData" />
         <input type="hidden" name="layout" id="formLayout" />
         <input type="hidden" name="industry" id="formIndustry" />
         <input type="hidden" name="sections" id="formSections" />

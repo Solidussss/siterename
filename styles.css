@@ -136,3 +136,41 @@ footer .footer-logo img{width:72px;height:64px}
   line-height:.96!important;
   letter-spacing:-.04em!important;
 }
+
+
+/* ===== Business logo upload / preview ===== */
+.logo-uploader{border:1px solid #d8dae0;background:#fff;border-radius:14px;padding:12px}
+.logo-uploader>input{display:none}
+.logo-upload-preview{display:grid;grid-template-columns:92px 1fr;gap:13px;align-items:center}
+.logo-preview-box{width:92px;height:72px;border:1px dashed #c9ccd3;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#f7f8fa;cursor:pointer;overflow:hidden}
+.logo-preview-box span{font-size:10px;color:#8a8e97}
+.logo-preview-box img{display:none;max-width:78px;max-height:54px;width:auto;height:auto;object-fit:contain}
+.logo-preview-box img.active{display:block}
+.logo-upload-copy{min-width:0}
+.logo-upload-copy strong{display:block;font-size:12px;margin-bottom:4px}
+.logo-upload-copy small{display:block;font-size:10px;line-height:1.4;color:#747983}
+.logo-upload-actions{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+.logo-upload-button,.logo-remove-button{min-height:34px;border-radius:999px;padding:0 12px;font-size:9px;cursor:pointer}
+.logo-upload-button{border:0;background:#111;color:#fff}
+.logo-remove-button{border:1px solid #d8dae0;background:#fff;color:#444}
+
+/* Clean logo placement inside every website style. */
+.site-brand-lockup{display:flex;align-items:center;min-width:0}
+.site-brand-lockup #siteLogo{display:none;max-width:150px;max-height:38px;width:auto;height:auto;object-fit:contain;object-position:left center}
+.site-brand-lockup #siteLogo.active{display:block}
+.site-brand-lockup #siteBusiness.logo-active{display:none}
+
+/* Give logos a little more breathing room in styles with larger navigation. */
+.builder-site[data-mode="editorial"] .site-brand-lockup #siteLogo.active,
+.builder-site[data-mode="executive"] .site-brand-lockup #siteLogo.active{max-height:40px;max-width:160px}
+.builder-site[data-mode="studio"] .site-brand-lockup #siteLogo.active,
+.builder-site[data-mode="impact"] .site-brand-lockup #siteLogo.active{max-height:36px;max-width:145px}
+
+/* Mobile stays balanced instead of letting a wide logo take over the header. */
+.builder-device.mobile .site-brand-lockup #siteLogo.active{max-width:112px;max-height:32px}
+
+@media(max-width:680px){
+  .logo-upload-preview{grid-template-columns:76px 1fr}
+  .logo-preview-box{width:76px;height:64px}
+  .logo-preview-box img{max-width:64px;max-height:46px}
+}
