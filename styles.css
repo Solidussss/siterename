@@ -403,3 +403,18 @@ footer .footer-logo img{width:72px;height:64px}
   .price { gap:8px; }
   footer { padding:30px 0; }
 }
+
+
+/* ==========================================================
+   SAFARI / MOBILE REVEAL FAILSAFE
+   Keeps all existing SiteRemade code and animation behavior
+   untouched on desktop. On phones/tablets, content is never
+   allowed to remain permanently hidden if IntersectionObserver
+   or the page script is delayed/blocked by Safari.
+   ========================================================== */
+@media (max-width: 720px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
