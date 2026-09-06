@@ -174,3 +174,232 @@ footer .footer-logo img{width:72px;height:64px}
   .logo-preview-box{width:76px;height:64px}
   .logo-preview-box img{max-width:64px;max-height:46px}
 }
+
+/* ========================================================================== */
+/* MOBILE RESPONSIVE SAFETY LAYER                                             */
+/* Added only to make the existing SiteRemade interface usable on phones.     */
+/* No existing desktop rules, components, content, or functionality removed. */
+/* ========================================================================== */
+
+@media (max-width: 720px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden; }
+  body { min-width:0; }
+  img, svg, video, canvas { max-width:100%; }
+
+  .nav,
+  .hero,
+  .modes-section,
+  .builder-section,
+  .handoff-section,
+  .why-section,
+  .pricing-section,
+  footer { width:calc(100% - 30px); max-width:100%; }
+
+  .nav { gap:12px; }
+  .brand-logo { flex:0 0 auto; }
+
+  .hero { grid-template-columns:minmax(0,1fr); gap:48px; }
+  .hero-copy,
+  .hero-machine { min-width:0; width:100%; }
+  .hero h1 { font-size:clamp(49px,14.5vw,66px); line-height:.9; overflow-wrap:break-word; }
+  .hero-description { max-width:100%; }
+  .hero-actions { width:100%; }
+  .hero-actions .button { min-width:0; }
+  .hero-machine { overflow:hidden; }
+  .hero-browser { width:100%; max-width:100%; }
+  .hero-demo { min-width:0; width:100%; min-height:440px; }
+  .hero-demo-copy { right:24px; max-width:calc(100% - 52px); }
+  .hero-demo-copy h2 { font-size:clamp(38px,12vw,51px); overflow-wrap:break-word; }
+
+  .split-heading,
+  .builder-intro,
+  .handoff-section,
+  .pricing-section { grid-template-columns:minmax(0,1fr); gap:36px; }
+  .section-heading h2,
+  .builder-intro h2,
+  .handoff-copy h2,
+  .pricing-copy h2,
+  .ownership-section h2 { font-size:clamp(42px,13vw,50px); overflow-wrap:break-word; }
+
+  .mode-showcase { grid-template-columns:minmax(0,1fr); width:100%; min-width:0; }
+  .mode-rail { grid-template-columns:1fr 1fr; width:100%; min-width:0; }
+  .mode-tab { min-width:0; padding:16px 12px; }
+  .mode-tab strong,
+  .mode-tab small { min-width:0; overflow-wrap:anywhere; }
+  .mode-stage-wrap,
+  .mode-stage,
+  .mode-browser,
+  .mode-preview { width:100%; min-width:0; max-width:100%; }
+  .mode-stage { overflow:hidden; }
+  .mode-stage-header > * { min-width:0; }
+  .mode-stage-header p { max-width:100%; }
+  .mode-window-bar em { max-width:62%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .mode-preview { height:auto; min-height:520px; }
+  .preview-nav { height:64px; padding:0 18px; }
+  .preview-nav strong { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .preview-nav button { flex:0 0 auto; }
+  .preview-hero { height:auto; min-height:400px; padding:24px 20px; }
+  .preview-copy { min-width:0; }
+  .preview-copy h3 { font-size:clamp(42px,13vw,56px); overflow-wrap:break-word; }
+  .preview-sub { max-width:100%; }
+  .preview-cta { flex-wrap:wrap; }
+  .preview-strip { height:auto; min-height:61px; }
+  .preview-strip span { min-width:0; min-height:52px; padding:10px 12px; }
+
+  .builder-shell { width:100%; min-width:0; grid-template-columns:minmax(0,1fr); }
+  .builder-controls,
+  .builder-preview-wrap { width:100%; min-width:0; max-width:100%; }
+  .builder-controls { padding:18px; overflow:visible; }
+  .builder-progress { overflow:hidden; }
+  .builder-progress span { min-width:0; font-size:7px; letter-spacing:.07em; }
+  .control-block,
+  .two-col-control,
+  .full-color-grid,
+  .layout-options,
+  .section-toggles { min-width:0; }
+  .builder-controls input[type="text"],
+  .builder-controls select,
+  .lead-form input,
+  .lead-form textarea { font-size:16px; } /* prevents iOS focus zoom */
+  .layout-choice { min-width:0; }
+  .layout-choice strong { white-space:nowrap; }
+
+  .preview-toolbar { height:auto; min-height:50px; padding:8px 5px 8px 8px; flex-wrap:wrap; }
+  .preview-toolbar > div:first-child { min-width:0; }
+  .device-toggle { margin-left:auto; }
+
+  /* The old mobile rule intentionally kept a 760px desktop preview. On an
+     actual phone that forced the whole builder sideways. This only changes
+     the phone viewport; the Desktop/Mobile preview toggle still works. */
+  .builder-device,
+  .builder-device.mobile { width:100%; min-width:0; max-width:100%; min-height:0; padding:7px; overflow:hidden; justify-content:center; }
+  .builder-site,
+  .builder-device.mobile .builder-site { width:100%; min-width:0!important; max-width:100%; }
+
+  .builder-site .site-nav { height:62px; padding:0 14px; gap:10px; }
+  .builder-site .site-nav > div:nth-child(2) { display:none; }
+  .builder-site .site-nav button { padding:9px 11px; font-size:8px; white-space:nowrap; }
+  .site-brand-lockup { max-width:55%; overflow:hidden; }
+  .site-brand-lockup #siteBusiness { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:10px; }
+  .site-brand-lockup #siteLogo.active { max-width:104px; max-height:30px; }
+
+  .builder-site .site-hero,
+  .builder-site[data-layout="split"] .site-hero { min-height:0; grid-template-columns:minmax(0,1fr)!important; padding:28px 20px!important; gap:24px; }
+  .builder-site .site-copy { min-width:0; max-width:100%; }
+  .builder-site .site-copy h3,
+  .builder-site[data-mode="studio"] .site-copy h3,
+  .builder-site[data-mode="impact"] .site-copy h3,
+  .builder-site[data-layout="poster"] .site-copy h3 { font-size:clamp(38px,12vw,48px)!important; line-height:.94!important; letter-spacing:-.045em!important; max-width:100%; overflow-wrap:break-word; }
+  .builder-site .site-copy > p:nth-of-type(2) { max-width:100%; }
+  .builder-site .site-actions { flex-wrap:wrap; gap:12px; }
+  .builder-site .site-visual { width:100%; height:230px; min-height:0; }
+  .builder-site .visual-mark { font-size:76px; }
+  .builder-site .visual-card { right:12px; bottom:12px; }
+
+  .builder-site[data-layout="center"] .site-hero,
+  .builder-site[data-layout="poster"] .site-hero { grid-template-columns:minmax(0,1fr)!important; }
+  .builder-site[data-layout="center"] .site-copy { max-width:100%; }
+  .builder-site[data-layout="poster"] .site-hero { min-height:500px; }
+
+  .builder-site .site-sections { grid-template-columns:1fr!important; }
+  .builder-site .site-sections > div { min-height:78px; border-right:0!important; border-bottom:1px solid color-mix(in srgb,var(--site-text) 18%,transparent); }
+  .builder-site .site-sections > div:last-child { border-bottom:0; }
+
+  .preview-summary { flex-wrap:wrap; gap:7px; }
+  .preview-summary span { min-width:0; }
+
+  .handoff-copy,
+  .lead-form,
+  .pricing-card { min-width:0; width:100%; }
+  .handoff-preview-card { overflow:hidden; }
+  .handoff-preview-card strong,
+  .handoff-preview-card p { overflow-wrap:anywhere; }
+  .lead-form { grid-template-columns:minmax(0,1fr); }
+  .lead-form .full-width,
+  .form-status { grid-column:1; }
+  .lead-form .button { width:100%; }
+
+  .why-grid { grid-template-columns:minmax(0,1fr); }
+  .why-grid article { min-width:0; padding:24px 0; }
+  .pricing-card { padding:30px 24px; }
+  .price { flex-wrap:wrap; }
+  .price span { font-size:clamp(58px,18vw,78px); }
+
+  .ownership-section { padding-left:20px; padding-right:20px; }
+  footer { gap:18px; }
+  footer div { flex-wrap:wrap; }
+}
+
+@media (max-width: 430px) {
+  .nav,
+  .hero,
+  .modes-section,
+  .builder-section,
+  .handoff-section,
+  .why-section,
+  .pricing-section,
+  footer { width:calc(100% - 24px); }
+
+  .hero { padding-top:56px; padding-bottom:72px; }
+  .hero h1 { font-size:clamp(46px,14vw,58px); }
+  .hero-actions { display:grid; grid-template-columns:1fr; }
+  .hero-actions .button { width:100%; }
+  .hero-meta { gap:10px 16px; }
+  .hero-meta span+span:before { margin-right:16px; }
+  .hero-demo { min-height:410px; padding:20px; }
+  .hero-demo-copy { left:20px; right:20px; bottom:24px; max-width:none; }
+  .hero-demo-actions { flex-wrap:wrap; }
+
+  .modes-section,
+  .builder-section,
+  .handoff-section,
+  .why-section,
+  .pricing-section { padding:72px 0; }
+  .mode-showcase,
+  .builder-shell { margin-top:44px; }
+  .mode-rail { grid-template-columns:1fr; }
+  .mode-tab { min-height:78px; }
+  .mode-stage { padding:12px; border-radius:18px; }
+  .mode-stage-header strong { font-size:24px; }
+  .mode-preview { min-height:500px; }
+  .preview-nav { padding:0 14px; }
+  .preview-nav button { padding:9px 10px; }
+  .preview-hero { min-height:385px; padding:22px 16px; }
+  .preview-copy h3 { font-size:clamp(39px,13vw,50px); }
+  .preview-strip { grid-template-columns:1fr 1fr; }
+
+  .builder-shell { padding:6px; border-radius:20px; }
+  .builder-controls { padding:15px; border-radius:15px; }
+  .builder-preview-wrap { padding:6px; border-radius:15px; }
+  .builder-progress { grid-template-columns:repeat(2,1fr); gap:8px 4px; }
+  .layout-options { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
+  .layout-choice { padding:5px; }
+  .layout-mini { height:45px; padding:5px; }
+  .layout-choice strong { font-size:9px; }
+  .logo-upload-preview { grid-template-columns:64px minmax(0,1fr); }
+  .logo-preview-box { width:64px; height:60px; }
+  .logo-preview-box img { max-width:54px; max-height:42px; }
+  .logo-upload-actions { flex-direction:column; align-items:stretch; }
+  .logo-upload-button,
+  .logo-remove-button { width:100%; }
+
+  .preview-toolbar { align-items:flex-start; }
+  .device-toggle { width:100%; margin:0; display:grid; grid-template-columns:1fr 1fr; }
+  .device-toggle button { width:100%; }
+  .builder-site .site-nav { padding:0 11px; }
+  .builder-site .site-nav button { padding:8px 9px; }
+  .builder-site .site-hero,
+  .builder-site[data-layout="split"] .site-hero { padding:24px 16px!important; }
+  .builder-site .site-copy h3,
+  .builder-site[data-mode="studio"] .site-copy h3,
+  .builder-site[data-mode="impact"] .site-copy h3,
+  .builder-site[data-layout="poster"] .site-copy h3 { font-size:clamp(34px,11.5vw,44px)!important; }
+  .builder-site .site-actions { align-items:flex-start; flex-direction:column; }
+  .builder-site .site-visual { height:205px; }
+  .builder-site[data-layout="poster"] .site-hero { min-height:455px; }
+
+  .lead-form { padding:18px; }
+  .pricing-card { padding:26px 20px; }
+  .price { gap:8px; }
+  footer { padding:30px 0; }
+}
